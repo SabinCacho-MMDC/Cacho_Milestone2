@@ -1,9 +1,3 @@
-com\mmdc\milestone2\DetailDisplay.class
-com\mmdc\milestone2\LoginGUI$1.class
-com\mmdc\milestone2\Manager.class
-com\mmdc\milestone2\SalaryCalculator.class
-com\mmdc\milestone2\Main.class
-com\mmdc\milestone2\LoginGUI.class
-com\mmdc\milestone2\BaseEmployee.class
-com\mmdc\milestone2\Employee.class
+com\mmdc\milestone2\Status.class
 com\mmdc\milestone2\Administrator.class
+com\mmdc\milestone2\BaseEmployee.class

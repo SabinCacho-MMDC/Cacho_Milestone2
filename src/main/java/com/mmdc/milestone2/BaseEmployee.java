@@ -1,47 +1,73 @@
 package com.mmdc.milestone2;
 
-abstract class BaseEmployee {
-    public BaseEmployee(String employeeID, String name, double grossSalary, String address){
-        this.employeeID = employeeID;
-        this.name = name;
-        this.grossSalary = grossSalary;
-        this.address = address;
-    }
+abstract class BaseEmployee {    
+    //TODO: edit attributes according to CP2 csv files
+    protected String employeeID;
+    protected String firstName;
+    protected String lastName;
+    protected int birthday;
+    protected String address;
+    protected String phoneNumber;
+    protected String sssNumber;
+    protected String philhealthNumber;
+    protected String tinNumber;
+    protected Status status;
+    protected String position;
+    protected double basicSalary;
+    protected double allowance;
     
-    private String employeeID;
-    private String name;
-    private double grossSalary;
-    private String address;
     
     public String getEmployeeID(){
         return employeeID;
     }
     
-    public void setEmployeeID(String employeeID){
-        this.employeeID = employeeID;
+    public String getFirstName(){
+        return firstName;
     }
     
-    public String getName(){
-        return name;
+    public String getLirstName(){
+        return lastName;
     }
     
-    public void setName(String name){
-        this.name = name;
-    }
-    
-    public double getGrossSalary(){
-        return grossSalary;
-    }
-    
-    public void setGrossSalary(double grossSalary){
-        this.grossSalary = grossSalary;
+    public int getBirthday(){
+        return birthday;
     }
     
     public String getAddress(){
         return address;
     }
     
-    public void setAddress(String address){
-        this.address = address;
+    public String getPhoneNumber(){
+        return phoneNumber;
     }
+    
+    public String getSSSNumber(){
+        return sssNumber;
+    }
+    
+    public String getPhilhealthNumber(){
+        return philhealthNumber;
+    }
+    
+    public String getTIN(){
+        return tinNumber;
+    }
+    
+    public Status getStatus(){
+        return status;
+    }
+    
+    public String getPosition(){
+        return position;
+    }
+    
+    public double basicSalary(){
+        return basicSalary;
+    }
+    
+    public double getAllowance(){
+        return allowance;
+    }
+    
+    
 }
