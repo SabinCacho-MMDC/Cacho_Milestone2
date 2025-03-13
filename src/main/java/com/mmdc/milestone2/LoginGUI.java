@@ -1,9 +1,16 @@
 package com.mmdc.milestone2;
-public class LoginGUI
-        extends javax.swing.JFrame {
+
+import java.io.File;
+import javax.swing.JOptionPane;
+
+public class LoginGUI extends javax.swing.JFrame {
+    String employeeDetailsCSV = "..\\Cacho_Milestone2\\src\\resources\\employee_data.csv";
+    String credentialsCSV = "..\\Cacho_Milestone2\\src\\resources\\credentials.csv";
     
     public LoginGUI() {
         initComponents();
+        setLocationRelativeTo(null);
+        tbPassword.setEchoChar('•');
     }
 
     /**
@@ -16,49 +23,55 @@ public class LoginGUI
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        employeeIDField = new javax.swing.JTextField();
-        passwordField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        tbEmployeeID = new javax.swing.JTextField();
+        btnEmployeeID = new javax.swing.JButton();
+        btnPassword = new javax.swing.JButton();
+        tglShowPassword = new javax.swing.JToggleButton();
+        tbPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Login");
 
-        employeeIDField.setToolTipText("Enter your Employee ID");
-        employeeIDField.setName("tbEmployeeID"); // NOI18N
+        tbEmployeeID.setToolTipText("Enter your Employee ID");
+        tbEmployeeID.setName("tbEmployeeID"); // NOI18N
 
-        passwordField.setToolTipText("Enter your Password");
-        passwordField.setName("tbPassword"); // NOI18N
+        btnEmployeeID.setText("Login");
+        btnEmployeeID.setName("btnLogin"); // NOI18N
+        btnEmployeeID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmployeeIDActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Login");
-        jButton1.setName("btnLogin"); // NOI18N
+        btnPassword.setText("Clear");
+        btnPassword.setName("btnClear"); // NOI18N
 
-        jButton2.setText("Clear");
-        jButton2.setName("btnClear"); // NOI18N
-
-        jToggleButton2.setText("Show Password");
-        jToggleButton2.setName("tglShowPassword"); // NOI18N
+        tglShowPassword.setText("Show Password");
+        tglShowPassword.setName("tglShowPassword"); // NOI18N
+        tglShowPassword.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tglShowPasswordStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(125, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(employeeIDField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(1, 1, 1))
-                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(131, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(tbEmployeeID, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(btnPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1))
+                    .addComponent(tbPassword, javax.swing.GroupLayout.Alignment.LEADING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton2)
-                .addGap(36, 36, 36))
+                .addComponent(tglShowPassword)
+                .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
                 .addGap(196, 196, 196)
                 .addComponent(jLabel1)
@@ -70,20 +83,46 @@ public class LoginGUI
                 .addGap(42, 42, 42)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(employeeIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tbEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton2))
+                    .addComponent(tglShowPassword)
+                    .addComponent(tbPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnEmployeeID)
+                    .addComponent(btnPassword))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEmployeeIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeIDActionPerformed
+        String employeeID;
+        String inputEmployeeID = tbEmployeeID.getText();
+        String inputPassword = String.valueOf(tbPassword.getPassword());
+        
+        EmployeeDatabase database = new EmployeeDatabase(employeeDetailsCSV, credentialsCSV);
+        employeeID = database.validateCredentials(inputEmployeeID, inputPassword); //validateCredentials returns an employeeID if login is valid, null if not
+        
+        if(employeeID != null){ 
+            DetailDisplayGUI employeeInfo = new DetailDisplayGUI(employeeID, employeeDetailsCSV);
+            employeeInfo.setVisible(true);
+            this.setVisible(false);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "ID or Password are incorrect");
+            tbPassword.setText("");
+        }
+    }//GEN-LAST:event_btnEmployeeIDActionPerformed
+
+    private void tglShowPasswordStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tglShowPasswordStateChanged
+        if (tglShowPassword.isSelected()){
+            tbPassword.setEchoChar((char)0);
+        }
+        else tbPassword.setEchoChar('•');
+    }//GEN-LAST:event_tglShowPasswordStateChanged
 
     /**
      * @param args the command line arguments
@@ -134,11 +173,11 @@ public class LoginGUI
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField employeeIDField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnEmployeeID;
+    private javax.swing.JButton btnPassword;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JTextField passwordField;
+    private javax.swing.JTextField tbEmployeeID;
+    private javax.swing.JPasswordField tbPassword;
+    private javax.swing.JToggleButton tglShowPassword;
     // End of variables declaration//GEN-END:variables
 }

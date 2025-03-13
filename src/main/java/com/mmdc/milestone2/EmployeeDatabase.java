@@ -11,25 +11,26 @@ public class EmployeeDatabase {
         this.credentialFile = credentialFile;
     }
     
-    public String validateCredentials(String employeeID, String password){
+    public EmployeeDatabase (String employeeFile){
+        this.employeeFile = employeeFile;
+    }
+    
+    public String validateCredentials(String employeeID, String password){ //method used to validate logins, returns employeeID
         try{
             String line;
             String[] data;
-            BufferedReader reader = new BufferedReader(new FileReader("credentials.csv"));
+            BufferedReader reader = new BufferedReader(new FileReader(credentialFile));
             
             while((line = reader.readLine()) != null){
                 data = line.split(",");
-                
                 if (data[0].equals(employeeID) && data[1].equals(password)){
                     return employeeID;
                 }
             }
         }
         catch(IOException e){
-            e.getLocalizedMessage();
+            System.out.println("Error: " + e.getLocalizedMessage());
         }
         return null;
     }
-    
-    //TODO: add methods to read and write to employee and credential files and validate login
 }

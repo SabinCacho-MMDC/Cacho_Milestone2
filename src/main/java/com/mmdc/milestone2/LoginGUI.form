@@ -24,22 +24,20 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="125" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="employeeIDField" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
-                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButton1" min="-2" pref="68" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton2" min="-2" pref="64" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="passwordField" min="-2" pref="173" max="-2" attributes="0"/>
+              <EmptySpace pref="131" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="tbEmployeeID" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnEmployeeID" min="-2" pref="68" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="btnPassword" min="-2" pref="64" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="tbPassword" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jToggleButton2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <Component id="tglShowPassword" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="196" max="-2" attributes="0"/>
@@ -54,16 +52,16 @@
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="employeeIDField" min="-2" max="-2" attributes="0"/>
+              <Component id="tbEmployeeID" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="passwordField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jToggleButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tglShowPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tbPassword" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnEmployeeID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnPassword" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="80" max="32767" attributes="0"/>
           </Group>
@@ -76,35 +74,37 @@
         <Property name="text" type="java.lang.String" value="Login"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="employeeIDField">
+    <Component class="javax.swing.JTextField" name="tbEmployeeID">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Enter your Employee ID"/>
         <Property name="name" type="java.lang.String" value="tbEmployeeID" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="passwordField">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Enter your Password"/>
-        <Property name="name" type="java.lang.String" value="tbPassword" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnEmployeeID">
       <Properties>
         <Property name="text" type="java.lang.String" value="Login"/>
         <Property name="name" type="java.lang.String" value="btnLogin" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEmployeeIDActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnPassword">
       <Properties>
         <Property name="text" type="java.lang.String" value="Clear"/>
         <Property name="name" type="java.lang.String" value="btnClear" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton2">
+    <Component class="javax.swing.JToggleButton" name="tglShowPassword">
       <Properties>
         <Property name="text" type="java.lang.String" value="Show Password"/>
         <Property name="name" type="java.lang.String" value="tglShowPassword" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="tglShowPasswordStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="tbPassword">
     </Component>
   </SubComponents>
 </Form>

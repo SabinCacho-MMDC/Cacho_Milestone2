@@ -5,16 +5,19 @@ abstract class BaseEmployee {
     protected String employeeID;
     protected String firstName;
     protected String lastName;
-    protected int birthday;
+    protected String birthday;
     protected String address;
     protected String phoneNumber;
     protected String sssNumber;
     protected String philhealthNumber;
     protected String tinNumber;
-    protected Status status;
+    protected String pagIbigNumber;
+    protected String status;
     protected String position;
     protected double basicSalary;
     protected double allowance;
+    protected double grossSalary;
+    protected double hourlyRate;
     
     
     public String getEmployeeID(){
@@ -29,7 +32,7 @@ abstract class BaseEmployee {
         return lastName;
     }
     
-    public int getBirthday(){
+    public String getBirthday(){
         return birthday;
     }
     
@@ -53,7 +56,7 @@ abstract class BaseEmployee {
         return tinNumber;
     }
     
-    public Status getStatus(){
+    public String getStatus(){
         return status;
     }
     
@@ -61,7 +64,7 @@ abstract class BaseEmployee {
         return position;
     }
     
-    public double basicSalary(){
+    public double getBasicSalary(){
         return basicSalary;
     }
     
@@ -69,5 +72,11 @@ abstract class BaseEmployee {
         return allowance;
     }
     
+    public double getGrossSalary(){
+        return grossSalary;
+    }
     
+    public double getHourlyRate(){
+        return hourlyRate;
+    }
 }
