@@ -4,8 +4,8 @@ import java.io.File;
 import javax.swing.JOptionPane;
 
 public class LoginGUI extends javax.swing.JFrame {
-    String employeeDetailsCSV = "..\\Cacho_Milestone2\\src\\resources\\employee_data.csv";
-    String credentialsCSV = "..\\Cacho_Milestone2\\src\\resources\\credentials.csv";
+    private String employeeDetailsPath = "..\\Cacho_Milestone2\\src\\resources\\employee_data.csv";
+    private String credentialsPath = "..\\Cacho_Milestone2\\src\\resources\\credentials.csv";
     
     public LoginGUI() {
         initComponents();
@@ -103,11 +103,11 @@ public class LoginGUI extends javax.swing.JFrame {
         String inputEmployeeID = tbEmployeeID.getText();
         String inputPassword = String.valueOf(tbPassword.getPassword());
         
-        EmployeeDatabase database = new EmployeeDatabase(employeeDetailsCSV, credentialsCSV);
+        EmployeeDatabase database = new EmployeeDatabase(employeeDetailsPath, credentialsPath);
         employeeID = database.validateCredentials(inputEmployeeID, inputPassword); //validateCredentials returns an employeeID if login is valid, null if not
         
         if(employeeID != null){ 
-            DetailDisplayGUI employeeInfo = new DetailDisplayGUI(employeeID, employeeDetailsCSV);
+            DetailDisplayGUI employeeInfo = new DetailDisplayGUI(employeeID);
             employeeInfo.setVisible(true);
             this.setVisible(false);
         }

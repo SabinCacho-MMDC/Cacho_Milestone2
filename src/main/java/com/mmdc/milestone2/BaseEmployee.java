@@ -1,7 +1,6 @@
 package com.mmdc.milestone2;
 
-abstract class BaseEmployee {    
-    //TODO: edit attributes according to CP2 csv files
+abstract class BaseEmployee {
     protected String employeeID;
     protected String firstName;
     protected String lastName;
@@ -15,7 +14,9 @@ abstract class BaseEmployee {
     protected String status;
     protected String position;
     protected double basicSalary;
-    protected double allowance;
+    protected double riceSubsidy;
+    protected double phoneAllowance;
+    protected double clothingAllowance;
     protected double grossSalary;
     protected double hourlyRate;
     
@@ -28,7 +29,7 @@ abstract class BaseEmployee {
         return firstName;
     }
     
-    public String getLirstName(){
+    public String getLastName(){
         return lastName;
     }
     
@@ -68,8 +69,16 @@ abstract class BaseEmployee {
         return basicSalary;
     }
     
-    public double getAllowance(){
-        return allowance;
+    public double getRiceSubsidy(){
+        return riceSubsidy;
+    }
+    
+    public double getPhoneAllowance(){
+        return phoneAllowance;
+    }
+    
+    public double getClothingAllowance(){
+        return phoneAllowance;
     }
     
     public double getGrossSalary(){

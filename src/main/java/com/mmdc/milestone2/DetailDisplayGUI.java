@@ -5,19 +5,20 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class DetailDisplayGUI extends javax.swing.JFrame {
-    String employeeID;
-    String employeeDetailsCSV;
-    EmployeeDatabase db;
+    private String employeeID;
+    private String employeeDetailsPath = "..\\Cacho_Milestone2\\src\\resources\\employee_data.csv";
+    private Employee employee;
+    private EmployeeDatabase db;
+    
     /** Creates new form DetailDisplay */
-    public DetailDisplayGUI(String employeeID, String employeeDetailsCSV) {
+    public DetailDisplayGUI(String employeeID) {
         initComponents();
         setLocationRelativeTo(null);
-        btnAdminConsole.setVisible(false);
-        btnManagerConsole.setVisible(false);
+        btnViewEmployeeList.setVisible(false);
         
         this.employeeID = employeeID;
-        this.employeeDetailsCSV = employeeDetailsCSV;
-        db = new EmployeeDatabase(employeeDetailsCSV);
+        this.employeeDetailsPath = employeeDetailsPath;
+        db = new EmployeeDatabase(employeeDetailsPath);
         setEmployeeDetails();
     }
 
@@ -51,10 +52,10 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         lblBirthday = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btnAdminConsole = new javax.swing.JButton();
-        btnManagerConsole = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         lblPagIbigNumber = new javax.swing.JLabel();
+        btnViewEmployeeList = new javax.swing.JButton();
+        btnViewPayroll = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
@@ -62,10 +63,10 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(900, 600));
 
         lblFullName.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        lblFullName.setText("Sabin Miguel Cacho");
+        lblFullName.setText("<name>");
 
         lblEmployeeID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblEmployeeID.setText("10001");
+        lblEmployeeID.setText("<ID>");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Employee ID:");
@@ -74,7 +75,7 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         jLabel4.setText("Phone Number:");
 
         lblPhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblPhoneNumber.setText("09985103116");
+        lblPhoneNumber.setText("<number");
 
         jScrollPane1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -83,7 +84,6 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         taAddress.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         taAddress.setLineWrap(true);
         taAddress.setRows(5);
-        taAddress.setText("1 Saint Anthony Street, Multinational Village, Paranaque City");
         taAddress.setWrapStyleWord(true);
         jScrollPane1.setViewportView(taAddress);
 
@@ -103,10 +103,10 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         jLabel10.setText("Position:");
 
         lblPosition.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblPosition.setText("Employee");
+        lblPosition.setText("<position>");
 
         lblStatus.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblStatus.setText("Probation");
+        lblStatus.setText("<status>");
 
         lblSSSNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblSSSNumber.setText("<number>");
@@ -118,7 +118,7 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         lblTIN.setText("<number>");
 
         lblBirthday.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblBirthday.setText("January 31, 2002");
+        lblBirthday.setText("<date>");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Birthday:");
@@ -126,15 +126,25 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Address:");
 
-        btnAdminConsole.setText("View Admin Console");
-
-        btnManagerConsole.setText("View Manager Console");
-
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel11.setText("Pag-Ibig:");
 
         lblPagIbigNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblPagIbigNumber.setText("<number>");
+
+        btnViewEmployeeList.setText("View Employee List");
+        btnViewEmployeeList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewEmployeeListActionPerformed(evt);
+            }
+        });
+
+        btnViewPayroll.setText("View Payroll");
+        btnViewPayroll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewPayrollActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,61 +154,54 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPhilhealthNumber))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPhoneNumber))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblEmployeeID))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSSSNumber))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblStatus))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPosition))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTIN))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPagIbigNumber))
+                    .addComponent(lblFullName))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(305, 305, 305)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblBirthday)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPhilhealthNumber))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPhoneNumber))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblEmployeeID))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblSSSNumber))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblStatus))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPosition))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTIN)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(305, 305, 305)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblBirthday)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(163, 163, 163)
-                                .addComponent(btnAdminConsole, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
-                                .addComponent(btnManagerConsole, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(18, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPagIbigNumber))
-                            .addComponent(lblFullName))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnViewEmployeeList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnViewPayroll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -231,7 +234,14 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(lblPhilhealthNumber)))
+                            .addComponent(lblPhilhealthNumber))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(lblPagIbigNumber))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel11))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblBirthday)
@@ -240,27 +250,27 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(52, 52, 52)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAdminConsole, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnManagerConsole, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(lblPagIbigNumber))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(lblTIN))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addGap(31, 31, 31)
+                        .addComponent(btnViewPayroll, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnViewEmployeeList, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(lblTIN))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnViewEmployeeListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewEmployeeListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewEmployeeListActionPerformed
+
+    private void btnViewPayrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPayrollActionPerformed
+        ViewPayrollGUI viewPayroll = new ViewPayrollGUI(employee);
+        viewPayroll.setVisible(true);
+    }//GEN-LAST:event_btnViewPayrollActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,7 +312,7 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         try{
             String line;
             String[] data;
-            BufferedReader reader = new BufferedReader(new FileReader(employeeDetailsCSV));
+            BufferedReader reader = new BufferedReader(new FileReader(employeeDetailsPath));
             
             while((line = reader.readLine()) != null){
                 data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); //regex to ignore commas within quotation marks (source: Bart Kiers, https://stackoverflow.com/questions/1757065/java-splitting-a-comma-separated-string-but-ignoring-commas-in-quotes
@@ -311,39 +321,36 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
                     
                     data[4] = data[4].replaceAll("\"", ""); //remove quotation marks from values
                     data[13] = data[13].replaceAll("\"", "");
+                    data[14] = data[14].replaceAll("\"", "");
                     data[15] = data[15].replaceAll("\"", "");
                     data[16] = data[16].replaceAll("\"", "");
                     data[17] = data[17].replaceAll("\"", "");
                     data[18] = data[18].replaceAll("\"", "");
 
                     data[13] = data[13].replaceAll(",", ""); //remove commas from values that will be parsed as doubles
+                    data[14] = data[14].replaceAll(",", "");
                     data[15] = data[15].replaceAll(",", "");
                     data[16] = data[16].replaceAll(",", "");
                     data[17] = data[17].replaceAll(",", "");
                     data[18] = data[18].replaceAll(",", "");
-
-
-                    String myString = "";
-                    for(String val : data)
-                    {
-                      myString += (": " + val + "\n");
-                    }
-                    System.out.println(myString);
                     
-                    switch(getPosition(data[11])){ //initialize employee based on position & set relevant button visibility
+                    employee = new Employee(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[14]), Double.parseDouble(data[15]), Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));                                                    setDetails(data);
+                    
+                    setEmployeeListButtonVisibility(data[11]);
+                    
+                    /*switch(getPosition(data[11])){ //initialize employee based on position & set relevant button visibility (unused for now)
                         case "Admin":
-                            Administrator admin = new Administrator(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[15]) + Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));
+                            admin = new Administrator(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[14]), Double.parseDouble(data[15]), Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));
                             setDetails(data);
                             break;
                         case "Manager":
-                            Manager manager = new Manager(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[15]) + Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));
+                            manager = new Manager(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[14]), Double.parseDouble(data[15]), Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));
                             setDetails(data);
                             break;
                         default:
-                            Employee employee = new Employee(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[15]) + Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));
+                            employee = new Employee(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[14]), Double.parseDouble(data[15]), Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));
                             setDetails(data);
-                            break;
-                    }
+                            break;*/
                 }
             }
         }
@@ -352,20 +359,17 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         }
     }
     
-    private String getPosition(String position){
+    private void setEmployeeListButtonVisibility(String position){
         if(position.contains("Chief Executive Officer") || position == "Chief Operating Officer" || position == "Chief Finance Officer" || position == "Chief Marketing Officer" || position.contains("Manager")){
-            btnManagerConsole.setVisible(true);
-            return "Manager";
+            btnViewEmployeeList.setVisible(true);
         }
-        else if(position == "IT Operations and Systems" || position.contains("Administrator")){
-            btnAdminConsole.setVisible(true);
-            return "Admin";
+        else if (position == "IT Operations and Systems" || position.contains("Administrator")){
+            btnViewEmployeeList.setVisible(true);
         }
-        else return "Employee";
     }
     
     private void setDetails(String[] data){
-        lblFullName.setText(data[2] + " " + data[1]);
+        lblFullName.setText(data[1] + ", " + data[2]);
         lblPosition.setText(data[11]);
         lblBirthday.setText(data[3]);
         lblStatus.setText(data[10]);
@@ -379,8 +383,8 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdminConsole;
-    private javax.swing.JButton btnManagerConsole;
+    private javax.swing.JButton btnViewEmployeeList;
+    private javax.swing.JButton btnViewPayroll;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
