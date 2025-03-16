@@ -21,11 +21,19 @@ public class PayrollCalculator {
         try{
             String line;
             String[] data;
-            BufferedReader reader = new BufferedReader(new FileReader("..\\Cacho_Milestone2\\src\\resources\\sss_contributions.csv"));
+            BufferedReader reader = new BufferedReader(new FileReader("..\\Cacho_Milestone2\\src\\resources\\sss_contribution.csv"));
             
             while((line = reader.readLine()) != null){
-                data = line.split(",");
-                if(grossMonthlySalary <= Double.parseDouble(data[1]) && grossMonthlySalary <= Double.parseDouble(data[0])){
+                data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                data[0] = data[0].replaceAll("\"", ""); //remove quotation marks from values
+                data[1] = data[1].replaceAll("\"", "");
+                data[2] = data[2].replaceAll("\"", "");
+                
+                data[0] = data[0].replaceAll(",", ""); //remove commas from values
+                data[1] = data[1].replaceAll(",", "");
+                data[2] = data[2].replaceAll(",", "");
+                
+                if(grossMonthlySalary <= Double.parseDouble(data[1]) && grossMonthlySalary >= Double.parseDouble(data[0])){
                     return Double.parseDouble(data[2]);
                 }
             }

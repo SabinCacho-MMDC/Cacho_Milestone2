@@ -4,17 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class DetailDisplayGUI extends javax.swing.JFrame {
+public class SelectedEmployeeDisplayGUI extends javax.swing.JFrame {
     private String employeeID;
     private String employeeDetailsPath = "..\\Cacho_Milestone2\\src\\resources\\employee_data.csv";
     private Employee employee;
     private EmployeeDatabase db;
     
-    /** Creates new form DetailDisplay */
-    public DetailDisplayGUI(String employeeID) {
+    /** Creates new form SelectedEmployeeDisplay */
+    public SelectedEmployeeDisplayGUI(String employeeID) {
         initComponents();
         setLocationRelativeTo(null);
-        btnViewEmployeeList.setVisible(false);
         
         this.employeeID = employeeID;
         this.employeeDetailsPath = employeeDetailsPath;
@@ -32,11 +31,8 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        lblFullName = new javax.swing.JLabel();
-        lblEmployeeID = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        lblPhoneNumber = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taAddress = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
@@ -44,29 +40,25 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        lblPosition = new javax.swing.JLabel();
-        lblStatus = new javax.swing.JLabel();
-        lblSSSNumber = new javax.swing.JLabel();
-        lblPhilhealthNumber = new javax.swing.JLabel();
-        lblTIN = new javax.swing.JLabel();
-        lblBirthday = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        lblPagIbigNumber = new javax.swing.JLabel();
-        btnViewEmployeeList = new javax.swing.JButton();
-        btnViewPayroll = new javax.swing.JButton();
+        tfFullName = new javax.swing.JTextField();
+        tfPosition = new javax.swing.JTextField();
+        tfStatus = new javax.swing.JTextField();
+        tfEmployeeID = new javax.swing.JTextField();
+        tfPhoneNumber = new javax.swing.JTextField();
+        tfSSSNumber = new javax.swing.JTextField();
+        tfPhilHealthNumber = new javax.swing.JTextField();
+        tfPagIbigNumber = new javax.swing.JTextField();
+        tfTIN = new javax.swing.JTextField();
+        btnSaveChanges = new javax.swing.JButton();
+        btnResetChanges = new javax.swing.JButton();
+        tfBirthday = new javax.swing.JTextField();
 
         jLabel2.setText("jLabel2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 600));
-
-        lblFullName.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        lblFullName.setText("<name>");
-
-        lblEmployeeID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblEmployeeID.setText("<ID>");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Employee ID:");
@@ -74,12 +66,8 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Phone Number:");
 
-        lblPhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblPhoneNumber.setText("<number");
-
         jScrollPane1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        taAddress.setEditable(false);
         taAddress.setColumns(20);
         taAddress.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         taAddress.setLineWrap(true);
@@ -102,24 +90,6 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Position:");
 
-        lblPosition.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblPosition.setText("<position>");
-
-        lblStatus.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblStatus.setText("<status>");
-
-        lblSSSNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblSSSNumber.setText("<number>");
-
-        lblPhilhealthNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblPhilhealthNumber.setText("<number>");
-
-        lblTIN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTIN.setText("<number>");
-
-        lblBirthday.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblBirthday.setText("<date>");
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Birthday:");
 
@@ -129,22 +99,38 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel11.setText("Pag-Ibig:");
 
-        lblPagIbigNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblPagIbigNumber.setText("<number>");
+        tfFullName.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        tfFullName.setText("<name>");
 
-        btnViewEmployeeList.setText("View Employee List");
-        btnViewEmployeeList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewEmployeeListActionPerformed(evt);
-            }
-        });
+        tfPosition.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tfPosition.setText("<position>");
 
-        btnViewPayroll.setText("View Payroll");
-        btnViewPayroll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewPayrollActionPerformed(evt);
-            }
-        });
+        tfStatus.setText("<status>");
+
+        tfEmployeeID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tfEmployeeID.setText("<ID>");
+
+        tfPhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tfPhoneNumber.setText("<number>");
+
+        tfSSSNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tfSSSNumber.setText("<number>");
+
+        tfPhilHealthNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tfPhilHealthNumber.setText("<number>");
+
+        tfPagIbigNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tfPagIbigNumber.setText("<number>");
+
+        tfTIN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tfTIN.setText("<number>");
+
+        btnSaveChanges.setText("Save Changes");
+
+        btnResetChanges.setText("Reset Changes");
+
+        tfBirthday.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tfBirthday.setText("<birthday>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,124 +140,118 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPhilhealthNumber))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPhoneNumber))
+                        .addComponent(tfPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblEmployeeID))
+                        .addComponent(tfEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblSSSNumber))
+                        .addComponent(tfSSSNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblStatus))
+                        .addComponent(tfStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPosition))
+                        .addComponent(tfPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTIN))
+                        .addComponent(tfTIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPagIbigNumber))
-                    .addComponent(lblFullName))
+                        .addComponent(tfPagIbigNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfPhilHealthNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(305, 305, 305)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblBirthday)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                        .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(305, 305, 305)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnViewEmployeeList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnViewPayroll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSaveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnResetChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(46, 46, 46)
+                .addComponent(tfFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblFullName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(lblPosition))
+                            .addComponent(tfPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(lblStatus))
+                            .addComponent(tfStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(lblEmployeeID))
+                            .addComponent(tfEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(lblPhoneNumber))
+                            .addComponent(tfPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(lblSSSNumber))
+                            .addComponent(tfSSSNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(lblPhilhealthNumber))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(lblPagIbigNumber))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel11))))
+                            .addComponent(tfPhilHealthNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(tfPagIbigNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(tfTIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblBirthday)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(tfBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addComponent(btnViewPayroll, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnViewEmployeeList, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(lblTIN))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSaveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnResetChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(47, 47, 47))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnViewEmployeeListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewEmployeeListActionPerformed
-        EmployeeListGUI employeeList = new EmployeeListGUI();
-        employeeList.setVisible(true);
-    }//GEN-LAST:event_btnViewEmployeeListActionPerformed
-
-    private void btnViewPayrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPayrollActionPerformed
-        ViewPayrollGUI viewPayroll = new ViewPayrollGUI(employee);
-        viewPayroll.setVisible(true);
-    }//GEN-LAST:event_btnViewPayrollActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,14 +270,23 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DetailDisplayGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelectedEmployeeDisplayGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DetailDisplayGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelectedEmployeeDisplayGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DetailDisplayGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelectedEmployeeDisplayGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DetailDisplayGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelectedEmployeeDisplayGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new DetailDisplayGUI().setVisible(true);
+//            }
+//        });
         //</editor-fold>
         //</editor-fold>
 
@@ -336,22 +325,6 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
                     data[18] = data[18].replaceAll(",", "");
                     
                     employee = new Employee(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[14]), Double.parseDouble(data[15]), Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));                                                    setDetails(data);
-                    
-                    setEmployeeListButtonVisibility(data[11]);
-                    
-                    /*switch(getPosition(data[11])){ //initialize employee based on position & set relevant button visibility (unused for now)
-                        case "Admin":
-                            admin = new Administrator(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[14]), Double.parseDouble(data[15]), Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));
-                            setDetails(data);
-                            break;
-                        case "Manager":
-                            manager = new Manager(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[14]), Double.parseDouble(data[15]), Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));
-                            setDetails(data);
-                            break;
-                        default:
-                            employee = new Employee(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[14]), Double.parseDouble(data[15]), Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));
-                            setDetails(data);
-                            break;*/
                 }
             }
         }
@@ -360,32 +333,23 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         }
     }
     
-    private void setEmployeeListButtonVisibility(String position){
-        if(position.contains("Chief Executive Officer") || position == "Chief Operating Officer" || position == "Chief Finance Officer" || position == "Chief Marketing Officer" || position.contains("Manager")){
-            btnViewEmployeeList.setVisible(true);
-        }
-        else if (position == "IT Operations and Systems" || position.contains("Administrator")){
-            btnViewEmployeeList.setVisible(true);
-        }
-    }
-    
     private void setDetails(String[] data){
-        lblFullName.setText(data[1] + ", " + data[2]);
-        lblPosition.setText(data[11]);
-        lblBirthday.setText(data[3]);
-        lblStatus.setText(data[10]);
-        lblEmployeeID.setText(data[0]);
-        lblPhoneNumber.setText(data[5]);
-        lblSSSNumber.setText(data[6]);
-        lblPhilhealthNumber.setText(data[7]);
-        lblPagIbigNumber.setText(data[9]);
-        lblTIN.setText(data[8]);
+        tfFullName.setText(data[1] + ", " + data[2]);
+        tfPosition.setText(data[11]);
+        tfBirthday.setText(data[3]);
+        tfStatus.setText(data[10]);
+        tfEmployeeID.setText(data[0]);
+        tfPhoneNumber.setText(data[5]);
+        tfSSSNumber.setText(data[6]);
+        tfPhilHealthNumber.setText(data[7]);
+        tfPagIbigNumber.setText(data[9]);
+        tfTIN.setText(data[8]);
         taAddress.setText(data[4]);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnViewEmployeeList;
-    private javax.swing.JButton btnViewPayroll;
+    private javax.swing.JButton btnResetChanges;
+    private javax.swing.JButton btnSaveChanges;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -398,17 +362,17 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblBirthday;
-    private javax.swing.JLabel lblEmployeeID;
-    private javax.swing.JLabel lblFullName;
-    private javax.swing.JLabel lblPagIbigNumber;
-    private javax.swing.JLabel lblPhilhealthNumber;
-    private javax.swing.JLabel lblPhoneNumber;
-    private javax.swing.JLabel lblPosition;
-    private javax.swing.JLabel lblSSSNumber;
-    private javax.swing.JLabel lblStatus;
-    private javax.swing.JLabel lblTIN;
     private javax.swing.JTextArea taAddress;
+    private javax.swing.JTextField tfBirthday;
+    private javax.swing.JTextField tfEmployeeID;
+    private javax.swing.JTextField tfFullName;
+    private javax.swing.JTextField tfPagIbigNumber;
+    private javax.swing.JTextField tfPhilHealthNumber;
+    private javax.swing.JTextField tfPhoneNumber;
+    private javax.swing.JTextField tfPosition;
+    private javax.swing.JTextField tfSSSNumber;
+    private javax.swing.JTextField tfStatus;
+    private javax.swing.JTextField tfTIN;
     // End of variables declaration//GEN-END:variables
 
 }

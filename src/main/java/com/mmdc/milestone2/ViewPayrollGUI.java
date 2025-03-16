@@ -256,7 +256,7 @@ public class ViewPayrollGUI extends javax.swing.JFrame {
                         .addGap(73, 73, 73)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
-                            .addComponent(lblHoursWorked))
+                            .addComponent(lblHoursWorked, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
@@ -324,21 +324,21 @@ public class ViewPayrollGUI extends javax.swing.JFrame {
     
     private void setDetailLabels(){
         lblFullName.setText(employee.getLastName() + ", " + employee.getFirstName());
-        lblBasicSalary.setText(Double.toString(employee.getBasicSalary()).format("%.2f"));
-        lblRiceSubsidy.setText(Double.toString(employee.getRiceSubsidy()).format("%.2f"));
-        lblPhoneAllowance.setText(Double.toString(employee.getPhoneAllowance()).format("%.2f"));
-        lblClothingAllowance.setText(Double.toString(employee.getClothingAllowance()).format("%.2f"));
-        lblGrossSemiMonthlyRate.setText(Double.toString(employee.getGrossSalary()).format("%.2f"));
-        lblHourlyRate.setText(Double.toString(employee.getHourlyRate()).format("%.2f"));
+        lblBasicSalary.setText(Double.toString(employee.getBasicSalary()));
+        lblRiceSubsidy.setText(Double.toString(employee.getRiceSubsidy()));
+        lblPhoneAllowance.setText(Double.toString(employee.getPhoneAllowance()));
+        lblClothingAllowance.setText(Double.toString(employee.getClothingAllowance()));
+        lblGrossSemiMonthlyRate.setText(Double.toString(employee.getGrossSalary()));
+        lblHourlyRate.setText(Double.toString(employee.getHourlyRate()));
         
         calculatePayrollDetails();
-        lblHoursWorked.setText(Long.toString(hoursWorked).format("%.2f"));
-        lblGrossMonthlySalary.setText(Double.toString(grossMonthlySalary).format("%.2f"));
-        lblSssContribution.setText(Double.toString(sssContribution).format("%.2f"));
-        lblPhilHealthContribution.setText(Double.toString(philHealthContribution).format("%.2f"));
-        lblPagIbigContribution.setText(Double.toString(pagIbigContribution).format("%.2f"));
-        lblWithholdingTax.setText(Double.toString(withholdingTaxDeduction).format("%.2f"));
-        lblNetMonthlySalary.setText(Double.toString(netMonthlySalary).format("%.2f"));
+        lblHoursWorked.setText(Long.toString(hoursWorked));
+        lblGrossMonthlySalary.setText(Double.toString(grossMonthlySalary));
+        lblSssContribution.setText(Double.toString(sssContribution));
+        lblPhilHealthContribution.setText(Double.toString(philHealthContribution));
+        lblPagIbigContribution.setText(Double.toString(pagIbigContribution));
+        lblWithholdingTax.setText(Double.toString(withholdingTaxDeduction));
+        lblNetMonthlySalary.setText(Double.toString(netMonthlySalary));
     }
     
     private void calculatePayrollDetails(){

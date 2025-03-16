@@ -1,10 +1,25 @@
 package com.mmdc.milestone2;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 public class EmployeeListGUI extends javax.swing.JFrame {
+    String employeeDetailsPath = "..\\Cacho_Milestone2\\src\\resources\\employee_data.csv";
+    EmployeeDatabase db = new EmployeeDatabase();
+    String[] columnNames = {"Employee ID", "Last Name", "First Name", "Position", "Status"};
+    ArrayList<String[]> employeeList;
+    DefaultTableModel tableModel;
+    String selectedEmployeeID;
 
     /** Creates new form EmployeeListGUI */
     public EmployeeListGUI() {
+        employeeList = db.getAllEmployees(employeeDetailsPath);
+        tableModel = new DefaultTableModel(employeeList.toArray(new Object[][]{}), columnNames);
         initComponents();
+        setLocationRelativeTo(null);
+        displayEmployees();
     }
 
     /** This method is called from within the constructor to
@@ -18,36 +33,25 @@ public class EmployeeListGUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEmployeeList = new javax.swing.JTable();
+        btnEditEmployee = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tblEmployeeList.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Employee ID", "Name", "Position"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        tblEmployeeList.setModel(tableModel);
+        tblEmployeeList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEmployeeListMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblEmployeeList);
+
+        btnEditEmployee.setText("Edit Selected Employee");
+        btnEditEmployee.setEnabled(false);
+        btnEditEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditEmployeeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,7 +59,11 @@ public class EmployeeListGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnEditEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -63,11 +71,26 @@ public class EmployeeListGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnEditEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblEmployeeListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeeListMouseClicked
+        btnEditEmployee.setEnabled(true);
+        JTable source = (JTable)evt.getSource();
+        int row = source.rowAtPoint( evt.getPoint() );
+        int column = source.columnAtPoint(evt.getPoint());
+        selectedEmployeeID = String.valueOf(source.getModel().getValueAt(row, 0));
+    }//GEN-LAST:event_tblEmployeeListMouseClicked
+
+    private void btnEditEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditEmployeeActionPerformed
+        SelectedEmployeeDisplayGUI selectedEmployeeGUI = new SelectedEmployeeDisplayGUI(selectedEmployeeID);
+        selectedEmployeeGUI.setVisible(true);
+    }//GEN-LAST:event_btnEditEmployeeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,8 +126,13 @@ public class EmployeeListGUI extends javax.swing.JFrame {
 //            }
 //        });
     }
+    
+    private void displayEmployees(){
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditEmployee;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblEmployeeList;
     // End of variables declaration//GEN-END:variables

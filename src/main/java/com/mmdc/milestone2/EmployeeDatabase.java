@@ -18,7 +18,7 @@ public class EmployeeDatabase {
     
     public EmployeeDatabase(){} //default constructor
     
-    public String validateCredentials(String employeeID, String password){ //method used to validate logins, returns employeeID
+    public String validateCredentials(String employeeID, String password){ //returns employeeID if valid, null if not
         try{
             String line;
             String[] data;
@@ -68,9 +68,31 @@ public class EmployeeDatabase {
         return null;
     }
     
-    public double calculateSalaryFromAttendance(String employeeID, ArrayList<String[]> attendanceLog){
+    public ArrayList<String[]> getAllEmployees(String employeeDetailsFile){
+        ArrayList<String[]> employeeList = new ArrayList<String[]>();
+        String[] employee;
         
-        
-        return 0;
+        try{
+            String line;
+            String[] data;
+            BufferedReader reader = new BufferedReader(new FileReader(employeeDetailsFile));
+            
+            while((line = reader.readLine()) != null){
+                data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                employee = new String[5];
+                
+                employee[0] = data[0]; //ID
+                employee[1] = data[1]; //Last Name
+                employee[2] = data[2]; //First Name
+                employee[3] = data[11]; //Status
+                employee[4] = data[10]; //Position
+                employeeList.add(employee); //appends entry to log list
+            }
+            return employeeList;
+        }
+        catch(IOException e){
+            System.out.println("Error: " + e.getLocalizedMessage());
+        }
+        return null;
     }
 }
