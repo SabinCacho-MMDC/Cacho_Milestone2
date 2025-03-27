@@ -328,19 +328,19 @@ public class ViewPayrollGUI extends javax.swing.JFrame {
     
     private void setDetailLabels(){
         lblFullName.setText(employee.getLastName() + ", " + employee.getFirstName());
-        lblBasicSalary.setText(Double.toString(employee.getBasicSalary()));
-        lblRiceSubsidy.setText(Double.toString(employee.getRiceSubsidy()));
-        lblPhoneAllowance.setText(Double.toString(employee.getPhoneAllowance()));
-        lblClothingAllowance.setText(Double.toString(employee.getClothingAllowance()));
-        lblGrossSemiMonthlyRate.setText(Double.toString(employee.getGrossSalary()));
-        lblHourlyRate.setText(Double.toString(employee.getHourlyRate()));
+        lblBasicSalary.setText(String.format("%#.2f", employee.getBasicSalary()));
+        lblRiceSubsidy.setText(String.format("%#.2f", employee.getRiceSubsidy()));
+        lblPhoneAllowance.setText(String.format("%#.2f", employee.getPhoneAllowance()));
+        lblClothingAllowance.setText(String.format("%#.2f", employee.getClothingAllowance()));
+        lblGrossSemiMonthlyRate.setText(String.format("%#.2f", employee.getGrossSalary()));
+        lblHourlyRate.setText(String.format("%#.2f", employee.getHourlyRate()));
         
         calculatePayrollDetails();
         lblHoursWorked.setText(Long.toString(hoursWorked));
-        lblGrossMonthlySalary.setText(Double.toString(grossMonthlySalary));
+        lblGrossMonthlySalary.setText(String.format("%#.2f", grossMonthlySalary));
         lblSssContribution.setText(String.format("%#.2f", sssContribution));
         lblPhilHealthContribution.setText(String.format("%#.2f", philHealthContribution));
-        lblPagIbigContribution.setText(String.format("%#.2f", sssContribution));
+        lblPagIbigContribution.setText(String.format("%#.2f", pagIbigContribution));
         lblWithholdingTax.setText(String.format("%#.2f", withholdingTaxDeduction));
         lblNetMonthlySalary.setText(String.format("%#.2f", netMonthlySalary));
     }
