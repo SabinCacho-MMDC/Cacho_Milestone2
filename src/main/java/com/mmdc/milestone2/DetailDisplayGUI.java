@@ -6,7 +6,6 @@ import java.io.IOException;
 
 public class DetailDisplayGUI extends javax.swing.JFrame {
     private String employeeID;
-    private String employeeDetailsPath = "..\\Cacho_Milestone2\\src\\resources\\employee_data.csv";
     private Employee employee;
     private EmployeeDatabase db;
     
@@ -17,8 +16,7 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         btnViewEmployeeList.setVisible(false);
         
         this.employeeID = employeeID;
-        this.employeeDetailsPath = employeeDetailsPath;
-        db = new EmployeeDatabase(employeeDetailsPath);
+        db = new EmployeeDatabase();
         setEmployeeDetails();
     }
 
@@ -264,7 +262,7 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewEmployeeListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewEmployeeListActionPerformed
-        EmployeeListGUI employeeList = new EmployeeListGUI();
+        EmployeeListGUI employeeList = new EmployeeListGUI(this);
         employeeList.setVisible(true);
     }//GEN-LAST:event_btnViewEmployeeListActionPerformed
 
@@ -313,7 +311,7 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
         try{
             String line;
             String[] data;
-            BufferedReader reader = new BufferedReader(new FileReader(employeeDetailsPath));
+            BufferedReader reader = new BufferedReader(new FileReader(FilePath.employeeDetailsPath));
             
             while((line = reader.readLine()) != null){
                 data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); //regex to ignore commas within quotation marks (source: Bart Kiers, https://stackoverflow.com/questions/1757065/java-splitting-a-comma-separated-string-but-ignoring-commas-in-quotes
@@ -338,20 +336,6 @@ public class DetailDisplayGUI extends javax.swing.JFrame {
                     employee = new Employee(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[14]), Double.parseDouble(data[15]), Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));                                                    setDetails(data);
                     
                     setEmployeeListButtonVisibility(data[11]);
-                    
-                    /*switch(getPosition(data[11])){ //initialize employee based on position & set relevant button visibility (unused for now)
-                        case "Admin":
-                            admin = new Administrator(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[14]), Double.parseDouble(data[15]), Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));
-                            setDetails(data);
-                            break;
-                        case "Manager":
-                            manager = new Manager(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[14]), Double.parseDouble(data[15]), Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));
-                            setDetails(data);
-                            break;
-                        default:
-                            employee = new Employee(data[0], data[2], data[1], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], Double.parseDouble(data[13]), Double.parseDouble(data[14]), Double.parseDouble(data[15]), Double.parseDouble(data[16]), Double.parseDouble(data[17]), Double.parseDouble(data[18]));
-                            setDetails(data);
-                            break;*/
                 }
             }
         }

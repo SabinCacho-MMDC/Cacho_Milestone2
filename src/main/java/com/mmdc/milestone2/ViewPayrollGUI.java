@@ -8,7 +8,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class ViewPayrollGUI extends javax.swing.JFrame {
     private String lateByTime = "08:11";
-    private String attendanceLogPath = "..\\Cacho_Milestone2\\src\\resources\\attendance_logs.csv";
     private Employee employee;
     private ArrayList<String[]> attendanceLog;
     private String[] columnNames = {"ID", "Last Name", "First Name", "Date", "Time In", "Time Out"};
@@ -26,8 +25,14 @@ public class ViewPayrollGUI extends javax.swing.JFrame {
     
     /** Creates new form ViewPayrollGUI */
     public ViewPayrollGUI(Employee employee) {
-        attendanceLog = db.getAttendanceFromFile(employee.getEmployeeID(), attendanceLogPath); //populate list of attendance log entries
-        tableModel = new DefaultTableModel(attendanceLog.toArray(new Object[][]{}), columnNames); //populate table with attendance log list by using a constructed DefaultTableModel
+        attendanceLog = db.getAttendanceFromFile(employee.getEmployeeID()); //populate list of attendance log entries
+        tableModel = new DefaultTableModel(attendanceLog.toArray(new Object[][]{}), columnNames){ //populate table with attendance log list by using a constructed DefaultTableModel
+            @Override
+            public boolean isCellEditable(int row, int column) {       
+                return false; // prevent cell editing
+            }
+        }; 
+        
         initComponents();
         setLocationRelativeTo(null);
         
@@ -280,8 +285,7 @@ public class ViewPayrollGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
-                            .addComponent(lblNetMonthlySalary))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(lblNetMonthlySalary)))))
         );
 
         pack();
@@ -334,11 +338,11 @@ public class ViewPayrollGUI extends javax.swing.JFrame {
         calculatePayrollDetails();
         lblHoursWorked.setText(Long.toString(hoursWorked));
         lblGrossMonthlySalary.setText(Double.toString(grossMonthlySalary));
-        lblSssContribution.setText(Double.toString(sssContribution));
-        lblPhilHealthContribution.setText(Double.toString(philHealthContribution));
-        lblPagIbigContribution.setText(Double.toString(pagIbigContribution));
-        lblWithholdingTax.setText(Double.toString(withholdingTaxDeduction));
-        lblNetMonthlySalary.setText(Double.toString(netMonthlySalary));
+        lblSssContribution.setText(String.format("%#.2f", sssContribution));
+        lblPhilHealthContribution.setText(String.format("%#.2f", philHealthContribution));
+        lblPagIbigContribution.setText(String.format("%#.2f", sssContribution));
+        lblWithholdingTax.setText(String.format("%#.2f", withholdingTaxDeduction));
+        lblNetMonthlySalary.setText(String.format("%#.2f", netMonthlySalary));
     }
     
     private void calculatePayrollDetails(){

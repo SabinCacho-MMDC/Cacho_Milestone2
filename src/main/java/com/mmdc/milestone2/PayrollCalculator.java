@@ -21,7 +21,7 @@ public class PayrollCalculator {
         try{
             String line;
             String[] data;
-            BufferedReader reader = new BufferedReader(new FileReader("..\\Cacho_Milestone2\\src\\resources\\sss_contribution.csv"));
+            BufferedReader reader = new BufferedReader(new FileReader(FilePath.sssContributionPath));
             
             while((line = reader.readLine()) != null){
                 data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");

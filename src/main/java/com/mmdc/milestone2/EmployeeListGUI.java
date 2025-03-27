@@ -6,20 +6,25 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class EmployeeListGUI extends javax.swing.JFrame {
-    String employeeDetailsPath = "..\\Cacho_Milestone2\\src\\resources\\employee_data.csv";
     EmployeeDatabase db = new EmployeeDatabase();
+    DetailDisplayGUI detailDisplay;
     String[] columnNames = {"Employee ID", "Last Name", "First Name", "Position", "Status"};
     ArrayList<String[]> employeeList;
     DefaultTableModel tableModel;
     String selectedEmployeeID;
 
     /** Creates new form EmployeeListGUI */
-    public EmployeeListGUI() {
-        employeeList = db.getAllEmployees(employeeDetailsPath);
-        tableModel = new DefaultTableModel(employeeList.toArray(new Object[][]{}), columnNames);
+    public EmployeeListGUI(DetailDisplayGUI detailDisplay) {
+        this.detailDisplay = detailDisplay;
+        employeeList = db.getAllEmployees();
+        tableModel = new DefaultTableModel(employeeList.toArray(new Object[][]{}), columnNames){ //populate table with employee list by using a constructed DefaultTableModel
+            @Override
+            public boolean isCellEditable(int row, int column) {       
+                return false; // prevent cell editing
+            }
+        }; ;
         initComponents();
         setLocationRelativeTo(null);
-        displayEmployees();
     }
 
     /** This method is called from within the constructor to
@@ -88,7 +93,7 @@ public class EmployeeListGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tblEmployeeListMouseClicked
 
     private void btnEditEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditEmployeeActionPerformed
-        SelectedEmployeeDisplayGUI selectedEmployeeGUI = new SelectedEmployeeDisplayGUI(selectedEmployeeID);
+        SelectedEmployeeDisplayGUI selectedEmployeeGUI = new SelectedEmployeeDisplayGUI(selectedEmployeeID, detailDisplay);
         selectedEmployeeGUI.setVisible(true);
     }//GEN-LAST:event_btnEditEmployeeActionPerformed
 
@@ -125,10 +130,6 @@ public class EmployeeListGUI extends javax.swing.JFrame {
 //                new EmployeeListGUI().setVisible(true);
 //            }
 //        });
-    }
-    
-    private void displayEmployees(){
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
